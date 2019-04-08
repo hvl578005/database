@@ -36,7 +36,7 @@ public class Main {
 		System.out.println(ansattEAO.finnAnsattMedBrukernavn("tst"));*/
 		
 		AvdelingEAO avdelingEAO = new AvdelingEAO();
-		Avdeling avdeling = avdelingEAO.finnAvdelingMedid(3);
+		Avdeling avdeling = avdelingEAO.finnAvdelingMedid(2);
 		System.out.println(avdeling);
 		
 
