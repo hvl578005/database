@@ -61,6 +61,8 @@ public class AnsattEAO {
 			TypedQuery<Ansatt> query = em.createQuery(
 					"SELECT t FROM Ansatt t", Ansatt.class);
 			ansatte = query.getResultList();	
+			System.out.println(ansatte.toString());
+			
 		} finally {
 			em.close();
 		}
@@ -93,7 +95,7 @@ public class AnsattEAO {
 	
 	
 	public void leggTilAnsatt(String brukernavn, String fornavn, String etternavn,
-			LocalDate ansettelsesdato, String stilling, String maanedslonn) {
+			LocalDate ansettelsesdato, String stilling, String maanedslonn, int avdelingid) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		
@@ -104,6 +106,7 @@ public class AnsattEAO {
 		ansatt.setAnsettelsesDato(ansettelsesdato);
 		ansatt.setStilling(stilling);
 		ansatt.setMaanedslonn(maanedslonn);
+		ansatt.setAvdelingid(avdelingid);
 		
 		try {
 			tx.begin();
