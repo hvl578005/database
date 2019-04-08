@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 
@@ -24,12 +25,15 @@ public class Ansatt {
 	private LocalDate ansettelsesDato;
 	private String stilling;
 	private String maanedslonn;
+	private int avdelingid;
 	
 	@ManyToOne
-	@JoinColumn(name = "avdelingid", referencedColumnName = "avdelingid")
+	@PrimaryKeyJoinColumn(name = "avdelingid", referencedColumnName = "avdelingid")
 	private Avdeling avdeling;
 	
-	public Ansatt (int id, String brukernavn, String fornavn, String etternavn, LocalDate ansettelsesdato, String stilling, String maanedslonn) {
+	
+	
+	public Ansatt (int id, String brukernavn, String fornavn, String etternavn, LocalDate ansettelsesdato, String stilling, String maanedslonn, int avdelingid) {
 		this.id = id;
 		this.brukernavn = brukernavn;
 		this.fornavn = fornavn;
@@ -37,6 +41,7 @@ public class Ansatt {
 		this.ansettelsesDato = ansettelsesdato;
 		this.stilling = stilling;
 		this.maanedslonn = maanedslonn;
+		this.avdelingid = avdelingid;
 	}
 	
 	public Ansatt() {
@@ -98,14 +103,32 @@ public class Ansatt {
 		this.maanedslonn = maanedslonn;
 	}
 	
+	public Avdeling getAvdeling() {
+		return avdeling;
+	}
+
+	public void setAvdeling(Avdeling avdeling) {
+		this.avdeling = avdeling;
+	}
 	
+	
+
+	public int getAvdelingid() {
+		return avdelingid;
+	}
+
+	public void setAvdelingid(int avdelingid) {
+		this.avdelingid = avdelingid;
+	}
 
 	@Override
 	public String toString() {
 		return "Ansatt [id=" + id + ", brukernavn=" + brukernavn + ", fornavn=" + fornavn + ", etternavn=" + etternavn
 				+ ", ansettelsesDato=" + ansettelsesDato + ", stilling=" + stilling + ", maanedslonn=" + maanedslonn
-				+ "]";
+				+  "]" + "\n";
 	}
+
+	
 	
 
 	

@@ -3,6 +3,8 @@ package data1.hib.no;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -13,7 +15,9 @@ import javax.persistence.Table;
 @Table (schema ="oblig3", name = "Avdeling")
 public class Avdeling {
 	
-	@Id private int avdelingid;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int avdelingid;
 	
 	private String navn;
 	private int sjefid;
