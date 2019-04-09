@@ -37,13 +37,17 @@ VALUES
     ('wtf', 'Trine', 'Hermansen', '2019-04-03', 'Konsulent', '50 000', 1),
     ('mmm', 'Kari', 'Smith', '2019-04-03', 'Konsulent', '50 000', 2),
     ('nja', 'Anne', 'Smith', '2019-04-03', 'Konsulent', '50 000', 3),
-    ('soa', 'Silja', 'Smith', '2019-04-03', 'Konsulent', '50 000', 1);
+    ('soa', 'Silja', 'Smith', '2019-04-03', 'Konsulent', '50 000', 1),
+    ('jbj', 'Julie', 'Heldal', '2019-04-09', 'Sjef', '90 000', 4),
+    ('fss', 'Francis', 'Soliman', '2019-04-09', 'Spion', '99 000', 4),
+    ('lss', 'Lasse', 'Hansen', '2019-04-09', 'Pizza ekspert', '47 000', 4);
 
 INSERT INTO Avdeling(Navn, Sjefid)
 VALUES
     ('Markedsføring', 1),
     ('IT', 2),
-    ('Salg', 3);
+    ('Salg', 3),
+    ('Kjøkken', 11);
     
 ALTER TABLE Ansatt ADD CONSTRAINT FK_avdeling
 FOREIGN KEY (Avdelingid) REFERENCES Avdeling(Avdelingid);

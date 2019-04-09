@@ -14,13 +14,10 @@ public class Main {
 		
 		AvdelingEAO avd = new AvdelingEAO();
 		
-		
-		
 		AnsattEAO ansattEAO = new AnsattEAO();
+		//ansattEAO.utListingAvAnsatte();
 		
-	
-		ansattEAO.utListingAvAnsatte();
-		
+		avd.utlistingAvAlleAnsatteIAvdeling(4);
 
 	}
 
