@@ -125,8 +125,10 @@ public class Ansatt {
 	public String toString() {
 		return "Ansatt [id=" + id + ", brukernavn=" + brukernavn + ", fornavn=" + fornavn + ", etternavn=" + etternavn
 				+ ", ansettelsesDato=" + ansettelsesDato + ", stilling=" + stilling + ", maanedslonn=" + maanedslonn
-				+  "]" + "\n";
+				+ ", avdeling navn og id =" + avdelingid + " " + avdeling.getNavn() +  "]";
 	}
+
+	
 
 	
 	

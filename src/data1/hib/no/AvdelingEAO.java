@@ -58,15 +58,48 @@ private EntityManagerFactory ems;
 		
 			
 		return ansatteiAvdeling;
+	}
+	
+	
+	public void oppdaterAnsattAvdeling(int id, int avdelingid) {
+		
+		boolean sjefer = false;
+		
+		EntityManager em = ems.createEntityManager();
+		Ansatt ansatt = new Ansatt();
+		Avdeling avd = new Avdeling();
+		AnsattEAO ansEAO = new AnsattEAO();
+		AvdelingEAO avdEAO = new AvdelingEAO();
+		
+		ansatt.setId(id);
+		ansatt = ansEAO.finnAnsattMedID(id);
+		avd.setAvdelingid(ansatt.getAvdelingid());
+		avd = avdEAO.finnAvdelingMedid(avdelingid);
+		int sjefid = avd.getSjefid();
+		Ansatt sjef = ansEAO.finnAnsattMedID(sjefid);
+		
+		if (sjef.getId() == id) {
+			System.out.println("Personen kan ikke endre avdeling siden den er sjef.");
+			sjefer = true;
+		} else {
+			try {
+				ansatt = em.find(Ansatt.class, id);
+				em.getTransaction().begin();
+				ansatt.setAvdelingid(avdelingid);
+				em.merge(ansatt);
+				em.getTransaction().commit();
+				} catch (Throwable e) {
+				e.printStackTrace();
+				if (em.getTransaction().isActive()) {
+					em.getTransaction().rollback();
+				}
+			} finally {
+				em.close();
+			}
+			
+		}
+}
 		
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-}

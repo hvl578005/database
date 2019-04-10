@@ -17,7 +17,16 @@ public class Main {
 		AnsattEAO ansattEAO = new AnsattEAO();
 		//ansattEAO.utListingAvAnsatte();
 		
-		avd.utlistingAvAlleAnsatteIAvdeling(4);
+		//avd.utlistingAvAlleAnsatteIAvdeling(4);
+		
+		avd.oppdaterAnsattAvdeling(3, 4);
+		
+	System.out.println(ansattEAO.finnAnsattMedID(3));
+	
+	avd.oppdaterAnsattAvdeling(11, 4);
+	
+	System.out.println(ansattEAO.finnAnsattMedID(11));
+	
 
 	}
 
