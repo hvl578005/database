@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
@@ -99,6 +100,56 @@ private EntityManagerFactory ems;
 			
 		}
 }
+	
+	public void leggTilAvdeling(String navn, int sjefid) {
+		EntityManager em = ems.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		
+		boolean eksisterer = false;
+		
+		Avdeling avdeling = new Avdeling();
+		avdeling.setNavn(navn);
+		avdeling.setSjefid(sjefid);
+		Ansatt ansat = new Ansatt();
+		ansat.setId(avdeling.getSjefid());
+		AnsattEAO eao = new AnsattEAO();
+		ansat = eao.finnAnsattMedID(ansat.getId());
+		
+		for (int i = 1; i<100; i++) {
+			if (i == sjefid) {
+				eksisterer = true;
+			} else {
+				i++;
+			}
+		}
+		
+		if (eksisterer = true) {
+			try {
+				tx.begin();
+				em.persist(avdeling);
+				tx.commit();
+				tx.begin();
+				ansat.setAvdelingid(avdeling.getAvdelingid());
+				em.merge(ansat);
+				tx.commit();
+			} catch (Throwable e) {
+				e.printStackTrace();
+				if (tx.isActive()) {
+					tx.rollback();
+				}
+			} finally {
+				em.close();
+			 
+			}
+		} else if (eksisterer = false) {
+			System.out.println("Den ansatte eksisterer ikke.");
+		}
+		
+		
+	}
+	
+	
+	
 		
 	}
 	
